@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<div class="container">
+    <form [formGroup]="editForm" (ngSubmit)="saveForm(editForm.value)">
+        <div class="form-group">
+            <label
+              for="descripcion"
+            >
+              Descripción
+            </label>
+            <input type="text"  class="form-control" placeholder="Descripción.." formControlName="descripcion">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" >Guardar</button>
+        <button type="button" class="btn btn-danger" (click)="eliminar()">Cancelar</button>
+    </form>
+</div>
+<app-footer></app-footer>

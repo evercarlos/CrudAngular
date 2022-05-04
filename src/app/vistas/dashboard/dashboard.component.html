@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="container">
+    <h3>Lista de Perfiles</h3>
+    <button type="button" class="btn btn-primary" (click)="newForm()">Nuevo Perfil</button>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let per of perfiles" (click)="dataEdit(per.idPerfil)">
+                <td></td>
+                <td>{{ per.idPerfil }}</td>
+                <td>{{ per.descripcion }}</td>
+                <td>{{ per.estado }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-footer></app-footer>
