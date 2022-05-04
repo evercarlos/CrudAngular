@@ -41,6 +41,12 @@ export class ApiService {
     let direccion = this.url+"/v1/perfil";
     return this.http.put<ResponseI>(direccion, form);
   }
+
+  postProfile(form: PerfilI):Observable<ResponseI>{
+    let direccion = this.url+"/v1/perfil";
+    return this.http.post<ResponseI>(direccion, form);
+  }
+
   deleteProfile(form:PerfilI):Observable<ResponseI>{
     let direccion = this.url+"/v1/perfil/"+form.idPerfil;
     return this.http.delete<ResponseI>(direccion);

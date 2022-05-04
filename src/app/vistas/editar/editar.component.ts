@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PerfilI } from '../../modelos/perfil.interface';
+import { ResponseI } from '../../modelos/response.interface';
 import { ApiService } from '../../servicios/api/api.service';
+import { AlertasService } from '../../servicios/alertas/alertas.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -11,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditarComponent implements OnInit {
 
-  constructor(private activeRouter: ActivatedRoute, private router: Router, private api:ApiService) { }
+  constructor(private activeRouter: ActivatedRoute, private router: Router, private api:ApiService, private alerta:AlertasService) { }
 
   datosPerfil!:PerfilI;
   editForm = new FormGroup(
@@ -36,14 +38,23 @@ export class EditarComponent implements OnInit {
 
   saveForm(data:PerfilI){
     this.api.putProfile(data).subscribe(response => {
-      console.log(response);
+      let resp:ResponseI = response;
+      if(resp.success){
+        this.alerta.showSuccess('Datos guardo correctamente', 'Hecho');
+        this.router.navigate(['dashboard']);
+      }
     });
   }
   eliminar(){
     let datos: PerfilI = this.editForm.value;
     this.api.deleteProfile(datos).subscribe(resp => {
       console.log(resp);
+
     })
+  }
+
+  close() {
+    this.router.navigate(['dashboard']);
   }
 
 }

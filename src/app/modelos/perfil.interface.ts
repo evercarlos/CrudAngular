@@ -3,4 +3,5 @@ export interface PerfilI{
     descripcion:string;
     estado:true;
     data: any;
+    token: string;
 }
